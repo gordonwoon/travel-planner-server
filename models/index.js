@@ -1,0 +1,2 @@
+require('./destination');
+require('./place');
