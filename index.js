@@ -21,6 +21,12 @@ mongoose.connection
     .on('error', error => console.log('Error connecting to MongoLab:', error));
 
 app.use(bodyParser.json());
+app.use(
+  cors({
+    origin: 'localhost:3000',
+    credentials: true
+  })
+);
 app.use('/graphql', expressGraphQL({
   schema,
   graphiql: true
