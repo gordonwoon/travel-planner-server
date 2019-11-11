@@ -3,6 +3,7 @@ const models = require('./models');
 const expressGraphQL = require('express-graphql');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors')
 const schema = require('./schema/schema');
 const keys = require('./config/keys');
 
@@ -21,17 +22,13 @@ mongoose.connection
     .on('error', error => console.log('Error connecting to MongoLab:', error));
 
 app.use(bodyParser.json());
+app.use(cors());
+
+app.options('/graphql', cors())
 app.use('/graphql', expressGraphQL({
   schema,
   graphiql: true
 }));
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Credentials', true)
-  res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-  next()
-});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
