@@ -12,7 +12,9 @@ const PlaceType = new GraphQLObjectType({
   name:  'PlaceType',
   fields: () => ({
     id: { type: GraphQLID },
+    place_id: { type: GraphQLString },
     name: { type: GraphQLString },
+    address: { type: GraphQLString },
     from_date: { type: GraphQLInt },
     to_date: { type: GraphQLInt },
     expense: { type: GraphQLInt },

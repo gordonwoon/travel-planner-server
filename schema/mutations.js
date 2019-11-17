@@ -19,11 +19,13 @@ const mutation = new GraphQLObjectType({
     addPlaceToDestination: {
       type: DestinationType,
       args: {
+        destinationId: { type: GraphQLID },
+        place_id: { type: GraphQLString },
         name: { type: GraphQLString },
-        destinationId: { type: GraphQLID }
+        address: { type: GraphQLString },
       },
-      resolve(parentValue, { name, destinationId }) {
-        return Destination.addPlaces(destinationId, name);
+      resolve(parentValue, { destinationId, place_id, name, address }) {
+        return Destination.addPlaces(destinationId, place_id, name, address );
       }
     },
     deleteDestination: {

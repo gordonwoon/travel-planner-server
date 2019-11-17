@@ -11,12 +11,12 @@ const DestinationSchema = new Schema({
   }]
 });
 
-DestinationSchema.statics.addPlaces = function(id, name) {
+DestinationSchema.statics.addPlaces = function(id, place_id, name, address) {
   const Place = mongoose.model('place');
 
   return this.findById(id)
     .then(destination => {
-      const place = new Place({ name, destination });
+      const place = new Place({ place_id, name, address, destination });
       destination.places.push(place);
       return Promise.all([destination.save(), place.save()])
         .then(([place, destination]) => destination)
