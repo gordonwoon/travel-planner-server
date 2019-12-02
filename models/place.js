@@ -3,6 +3,8 @@ const Schema = mongoose.Schema;
 
 const PlaceSchema = new Schema({
   name: { type: String },
+  address: { type: String },
+  place_id: { type: String },
   from_date: { type: Number },
   to_date: { type: Number },
   expense: { type: Number },
