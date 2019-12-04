@@ -4,6 +4,7 @@ const {
   GraphQLObjectType,
   GraphQLID,
   GraphQLInt,
+  GraphQLFloat,
   GraphQLString
 } = graphql;
 const Place = mongoose.model('place');
@@ -17,7 +18,7 @@ const PlaceType = new GraphQLObjectType({
     address: { type: GraphQLString },
     from_date: { type: GraphQLInt },
     to_date: { type: GraphQLInt },
-    expense: { type: GraphQLInt },
+    expense: { type: GraphQLFloat },
     type: { type: GraphQLString },
     waypoint: { type: GraphQLString },
     destination: {
